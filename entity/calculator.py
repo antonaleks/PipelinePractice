@@ -16,7 +16,7 @@ class Calculator:
     # subtract method - given two numbers, return the value
     # of first value minus the second
     def subtract(self, x1, x2):
-        return x1 - x2
+        return x1 + x2
 
     # divide method - given two numbers, return the value
     # of first value divided by the second
