@@ -1,5 +1,5 @@
 # PipelinePractice
-
+[![Build Status](https://dev.azure.com/alekseevap/PipelinePractice/_apis/build/status/antonaleks.FlaskPipeline?branchName=master)](https://dev.azure.com/alekseevap/PipelinePractice/_build/latest?definitionId=6&branchName=master)
 
 # Юнит тестирование
 1. Для юнит тестирования кода используется unittest либо pytest модули
