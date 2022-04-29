@@ -3,30 +3,40 @@
 # Add steps that analyze code, save the dist with the build record, publish to a PyPI-compatible index, and more:
 # https://docs.microsoft.com/azure/devops/pipelines/languages/python
 
-trigger:
-- master
+trigger: # в данном блоке определяется, при каком событии запускать пайплайн
+- master # запускаем, как только пришел новый коммит в ветку master
 
-pool:
-  vmImage: ubuntu-latest
-strategy:
-  matrix:   
-    Python37:
+pool: # здесь определяем образ докера, в котором запускается приложение и версию интерпритатора
+  vmImage: ubuntu-latest # выбираем ubuntu
+strategy: # здесь выбираем стек программирования
+  matrix: # matrix позволяет запускать параллельные конвейеры, если требуются разные версии
+#    Python36: # пока отключаем запуск на 3.6
+#      python.version: '3.6'
+    Python37: # запускаем на 3.7
       python.version: '3.7'
-    Python39:
-      python.version: '3.9'
 
-steps:
-- task: UsePythonVersion@0
+steps: # здесь указываются шаги конвейера
+- task: UsePythonVersion@0 # используем версию питона
   inputs:
     versionSpec: '$(python.version)'
   displayName: 'Use Python $(python.version)'
 
-- script: |
+- script: | # запускаем апдейт питона, устанавливаем зависимости (в нашем случае flask)
     python -m pip install --upgrade pip
     pip install -r requirements.txt
-  displayName: 'Install dependencies'
+  displayName: 'Install dependencies' # здесь отображается название текущей задачи
 
-- script: |
-    pip install pytest pytest-azurepipelines
+- script: | # запускаем юнит тесты
+    pip install pytest
     pytest tests/unit_tests && pip install pycmd && py.cleanup tests/
   displayName: 'pytest'
+
+- task: ArchiveFiles@2 # архивируем наш проект чтобы опубликовать артефакт. Артефакт это по сути то, что отдает клиенту (например архив с программой)
+  displayName: 'Archive application'
+  inputs:
+    rootFolderOrFile: '$(System.DefaultWorkingDirectory)/'
+    includeRootFolder: false
+    archiveFile: '$(Build.ArtifactStagingDirectory)/$(Build.BuildId).zip'
+
+- task: PublishBuildArtifacts@1 # публикуем артефакт как результат нашего пайплайна
+  displayName: 'Publish Artifact: drop'
