@@ -179,17 +179,23 @@
        ![img_30.png](img_30.png)
     3. Добавить следующие шаги:
        ![img_31.png](img_31.png)
-    4.Сконфигурировать следующим образом Разархивируем приложение (артефакт)
-    ![img_32.png](img_32.png)
+       4.Сконфигурировать следующим образом Разархивируем приложение (артефакт)
+       ![img_32.png](img_32.png)
 
-    ![img_33.png](img_33.png)
-    Что происходит в коде?
+   ![img_33.png](img_33.png)
+   Что происходит в коде?
     ```shell
       pip install selenium pytest# устанавливаем selenium и pytest
       echo $(ChromeWebDriver) # убеждаемся, что установлен ChromeWebDriver. Он есть только в версиях agent Windows
-      pytest Agent.HomeDirectory/tests/functional_tests --junitxml=TestResults/test-results.xml # запускаем тесты. экспортируем отчет
+      pytest Agent.HomeDirectory/tests/functional_tests --url <url вашего сайта>  --junitxml=TestResults/test-results.xml # запускаем тесты. экспортируем отчет
     ```
+   Не забываем в pytest вставить --url вашего сайта!
    Публикуем тесты в Azure DevOps
    ![img_34.png](img_34.png)
-   5. Создать Release. Проверить, что тесты выполнились
-   [Статья пример](https://www.azuredevopslabs.com/labs/vstsextend/python/)
+    5. Создать Release. Проверить, что тесты выполнились
+       ![img_35.png](img_35.png)
+    6. В вкладке Test Plans должны отобразится результаты
+       ![img_36.png](img_36.png)
+       ![img_37.png](img_37.png)
+
+[Статья пример](https://www.azuredevopslabs.com/labs/vstsextend/python/)
