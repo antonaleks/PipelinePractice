@@ -169,6 +169,10 @@
        ![img_21.png](img_21.png)
     6. Сконфигурировать настройки сервиса в Azure
        ![img_22.png](img_22.png)
+       При конфигурации Azure subscription необходимо авторизоваться
+       ![img_43.png](img_43.png)
+       ![img_44.png](img_44.png)
+       ![img_45.png](img_45.png)
     ```shell
     gunicorn --bind=0.0.0.0 --timeout 600 app:app # команда вызова python app.py через шлюз gunicorn
     ```
