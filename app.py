@@ -11,7 +11,7 @@ def hello_world():
     return f"Hello, world"
 
 
-@app.route("/add/<int:a>&<int:b>")
+@app.route("/add/<a>&<b>")
 def add(a, b):
     return f"Add {a} and {b}. Got {calc.add(a, b)}!"
 
