@@ -150,6 +150,11 @@
        ![img_10.png](img_10.png)
        ![img_11.png](img_11.png)
     6. Создать Web App
+    7. Если столкнулись с проблемой:
+    ![img_41.png](img_41.png)
+       нужно выбрать другой регион
+       ![img_42.png](img_42.png)
+       В скобка плана должно отобразится (Новое)
 4. Настроить CD pipeline
     1. В Azure DevOps создать Release
        ![img_12.png](img_12.png)
